@@ -3,7 +3,8 @@ class QuotesController < Rulers::Controller
   # with a controller action: a_quote
   def a_quote
     "There is nothing either good or bad but thinking makes it so." +
-    "<br/> #{output(env)}"
+    # the ENV is inherited from Rulers::Controller
+    "<br/><br/> #{output(env)}"
   end
 
   def exception
@@ -15,5 +16,6 @@ class QuotesController < Rulers::Controller
     def output(hash)
       hash.map{|k,v| "#{k}: #{v}"}.sort.join("<br/>")
     end
+
 
 end
