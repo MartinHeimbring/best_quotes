@@ -2,9 +2,9 @@
 class QuotesController < Rulers::Controller
   # with a controller action: a_quote
   def a_quote
-    "There is nothing either good or bad but thinking makes it so." +
+    "There is nothing either good or bad but thinking makes it so." #+
     # the ENV is inherited from Rulers::Controller
-    "<br/><br/> #{output(env)}"
+    #"<br/><br/> #{output(env)}"
   end
 
   def exception
