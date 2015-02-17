@@ -6,5 +6,6 @@ source 'https://rubygems.org'
 gem "rulers", :path => "../rulers"
 
 group :development do
+  gem 'sqlite3'
   gem 'rerun'
 end
