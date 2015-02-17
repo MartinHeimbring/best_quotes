@@ -1,0 +1,7 @@
+<% quotes.each do |quote| %>
+    <p>
+      Quote Nr. <%= quote.id %>: <br/>
+      <%= quote["quote"] %> <br/>
+      - by <%= quote["attribution"] %>
+    </p>
+<% end %>
