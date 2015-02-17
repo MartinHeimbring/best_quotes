@@ -10,13 +10,13 @@
 <br/>
 
 <h1>
-  This was how I originally accessed the file path and parameters using only the Rack environment:
+  This was how I originally accessed the path and parameters using only the Rack environment:
 </h1>
 
 <br/>
 
 <h2>
-  env["PATH_INFO"] => <%= env["PATH_INFO"] %>
+  env["REQUEST_PATH"] => <%= env["REQUEST_PATH"] %>
   env["QUERY_STRING"] => <%= env["QUERY_STRING"] %>
 </h2>
 
@@ -24,14 +24,16 @@
 
 <h1>
   Then I required Rack::Request.
-  Rack::Request provides a convenient interface to a Rack environment.
-  Instead of accessing env["PATH_INFO"] we can simply access the params directly.
+  It provides a convenient interface to a Rack environment.
+  Instead of accessing env["QUERY_STRING"] we can simply access the params directly.
 </h1>
 
 <br/>
 
 <h2>
-  params: <%= params %>
-  full_path: <%= fullpath %>
+  params: <%= params %> <br>
+  full path: <%= fullpath %> <br>
+  path: <%= path %> <br>
+  host: <%= host %>
 </h2>
 

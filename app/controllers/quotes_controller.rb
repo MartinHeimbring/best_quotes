@@ -5,6 +5,18 @@ class QuotesController < Rulers::Controller
     render :a_quote, :noun => :winking
   end
 
+  def show
+    quote = FileModel.find(params["id"])
+    render_response :quote, {
+                    # quote, params, fullpath and path are available as instance methods on Rulers::Controller
+                    # they are a shortcut for saying e.g. request.quote
+                    :obj => quote,
+                    :params => params,
+                    :fullpath => fullpath,
+                    :path => path,
+                    # to access a Rack::Request instance method we would have to call it directly on the request object provided by the Rulers::Controller
+                    :host => request.host}
+  end
 
   def new_quote
     attrs = {
