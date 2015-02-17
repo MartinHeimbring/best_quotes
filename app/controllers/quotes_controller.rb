@@ -8,16 +8,15 @@ class QuotesController < Rulers::Controller
   end
 
   def show
-    quote = FileModel.find(params["id"])
-    render_response :quote, {
-                    # quote, params, fullpath and path are available as instance methods on Rulers::Controller
-                    # they are a shortcut for saying e.g. request.quote
-                    :obj => quote,
-                    :params => params,
-                    :fullpath => fullpath,
-                    :path => path,
-                    # to access a Rack::Request instance method we would have to call it directly on the request object provided by the Rulers::Controller
-                    :host => request.host}
+    @quote = FileModel.find(params["id"])
+    render_response :show, {:env => env,
+                            # quote, params, fullpath and path are available as instance methods on Rulers::Controller
+                            # they are a shortcut for saying e.g. request.quote
+                            :params => params,
+                            :fullpath => fullpath,
+                            :path => path,
+                            # to access a Rack::Request instance method we would have to call it directly on the request object provided by the Rulers::Controller
+                            :host => request.host}
   end
 
   def new_quote
@@ -26,29 +25,19 @@ class QuotesController < Rulers::Controller
         "quote" => "A picture is woth one k pixels",
         "attribution" => "Me"
     }
-    m = FileModel.create attrs
-    render :quote, :obj => m
+    # create a new file
+    @quote = FileModel.create attrs
+    render_response :show, {:env => env,
+                            :params => params,
+                            :fullpath => fullpath,
+                            :path => path,
+                            :host => request.host}
   end
 
   def index
-    quotes = FileModel.all
-    render_response :index, :quotes => quotes
+    @quotes = FileModel.all
+    render_response :index
   end
-
-  def quote_1
-    quote_1 = FileModel.find(1)
-    render :quote, :obj => quote_1
-  end
-
-  def exception
-    raise "It's bad!"
-  end
-
-  private
-
-    def output(hash)
-      hash.map{|k,v| "#{k}: #{v}"}.sort.join("<br/>")
-    end
 
 
 end

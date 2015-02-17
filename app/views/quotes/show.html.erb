@@ -1,0 +1,37 @@
+<p>
+    &quot;<%= @quote["quote"] %>&quot;
+    <br/> &ndash; <%= @quote["attribution"] %>
+</p>
+
+<p>
+  Submitted by <%= @quote["submitter"] %>
+</p>
+<br/>
+<br/>
+
+<h2>
+  This was how I originally accessed the file path and parameters using only the Rack environment:
+</h2>
+
+<br/>
+
+<h2>
+  env["PATH_INFO"] => <%= env["PATH_INFO"] %> <br>
+  env["QUERY_STRING"] => <%= env["QUERY_STRING"] %>
+</h2>
+
+<br/>
+
+<h2>
+  Then I required Rack::Request. <br>
+  Rack::Request provides a convenient interface to a Rack environment. <br>
+  Instead of accessing env["PATH_INFO"] we can simply access the params directly. <br>
+</h2>
+
+<br/>
+
+<h2>
+  params: <%= params %> <br>
+  params['id']: <%= params['id'] %> <br>
+  full_path: <%= fullpath %>
+</h2>
