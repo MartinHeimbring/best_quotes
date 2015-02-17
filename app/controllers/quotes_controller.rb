@@ -2,7 +2,9 @@
 class QuotesController < Rulers::Controller
   # with a controller action: a_quote
   def a_quote
-    render :a_quote, :noun => :winking
+    # no need to call render anymore because I implemented Rails Automatic rendering
+    # where I automatically render a template with the name of the controller action
+    # render :a_quote, :noun => :winking
   end
 
   def show
@@ -30,7 +32,7 @@ class QuotesController < Rulers::Controller
 
   def index
     quotes = FileModel.all
-    render :index, :quotes => quotes
+    render_response :index, :quotes => quotes
   end
 
   def quote_1
