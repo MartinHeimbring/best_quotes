@@ -1,7 +1,7 @@
 class PostsController < Rulers::Controller
 
   def show
-    @post = Post.find(params["id"].to_i)
+    @post = Post.find(params["id"])
   end
 
   def new
@@ -9,8 +9,5 @@ class PostsController < Rulers::Controller
     render_response :show, {:env => env}
   end
 
-  def a_post
-    @post = Post.find(1)
-  end
 
 end
