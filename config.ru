@@ -33,6 +33,13 @@ end
 # use BenchMarker, 10_000
 
 
-# run the app on --> rackup -p <PORT>
-run BestQuotes::Application.new
+=begin
+  # use a build in Rack middleware:
+  # Rack::URLMap - Route different directories to different apps or different stacks.
+  # I can also use this with a “map” block in config.ru. like so:
+
+  map "/" do
+    run QuotesController.action(:index)
+  end
+=end
 
