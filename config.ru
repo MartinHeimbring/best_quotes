@@ -43,3 +43,22 @@ end
   end
 =end
 
+  # use own DSL to match routes
+
+app = BestQuotes::Application.new
+
+app.route do
+  # root path:
+  match "", "quotes#index"
+  # we can run a proc directly
+  match "sub-app", proc{ [200, {}, ["Hello, sub-app!"]]}
+
+  # default routes
+  match ":controller/:id/:action"
+  match ":controller/:id", :default => { "action" => "show" }
+  match ":controller", :default => { "action" => "index" }
+end
+
+run app
+
+
