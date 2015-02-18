@@ -14,15 +14,17 @@ class PostsController < Rulers::Controller
   # Update
   def edit
     @post = find_post
-    @post["title"] = "Updated!!!"
-    @post.save
-    render_response :show
+    if params["title"]
+      @post["title"] = params["title"]
+      @post.save!
+    end
+    render_response :updated
   end
 
   # Delete
   def destroy
     @post = find_post
-    @post.delete!
+    @post.destroy
     render_response :destroyed
   end
 
